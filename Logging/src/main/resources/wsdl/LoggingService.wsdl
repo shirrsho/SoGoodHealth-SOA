@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="LoggingService"
+             targetNamespace="http://www.healthcare.com/ws/LoggingService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.healthcare.com/ws/LoggingService">
+
+    <types>
+        <xs:schema>
+        <xs:import namespace="http://www.healthcare.com/ws/LoggingService" schemaLocation="../schemas/LoggingServiceSchema.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="logFault">
+        <part name="params" element="tns:logFault"/>
+    </message>
+
+    <message name="logMessageRequestMsg">
+        <part name="params" element="tns:logMessageRequest"/>
+    </message>
+    <message name="logMessageResponseMsg">
+        <part name="params" element="tns:logMessageResponse"/>
+    </message>
+
+    <portType name="LoggingServicePortType">
+        <operation name="logMessage">
+            <input message="tns:logMessageRequestMsg"/>
+            <output message="tns:logMessageResponseMsg"/>
+            <fault name="fault" message="tns:logFault"/>
+        </operation>
+    </portType>
+
+    <binding name="loggingServiceSOAPBinding" type="tns:LoggingServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="logMessage">
+            <soap:operation soapAction="logMessage"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="LoggingService">
+        <port name="LoggingServicePort" binding="tns:loggingServiceSOAPBinding">
+            <soap:address location="http://localhost:8088/wsdlfirst/loggingService"/>
+        </port>
+    </service>
+</definitions>

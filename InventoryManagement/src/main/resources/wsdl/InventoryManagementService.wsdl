@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="InventoryManagementService"
+             targetNamespace="http://www.healthcare.com/ws/InventoryManagementService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.healthcare.com/ws/InventoryManagementService">
+
+    <types>
+        <xs:schema>
+        <xs:import namespace="http://www.healthcare.com/ws/InventoryManagementService" schemaLocation="../schemas/InventoryManagementServiceSchema.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="inventoryFault">
+        <part name="params" element="tns:inventoryFault"/>
+    </message>
+
+    <message name="addInventoryRequestMsg">
+        <part name="params" element="tns:addInventoryRequest"/>
+    </message>
+    <message name="addInventoryResponseMsg">
+        <part name="params" element="tns:addInventoryResponse"/>
+    </message>
+
+    <message name="updateInventoryRequestMsg">
+        <part name="params" element="tns:updateInventoryRequest"/>
+    </message>
+    <message name="updateInventoryResponseMsg">
+        <part name="params" element="tns:updateInventoryResponse"/>
+    </message>
+
+    <message name="getInventoryRequestMsg">
+        <part name="params" element="tns:getInventoryRequest"/>
+    </message>
+    <message name="getInventoryResponseMsg">
+        <part name="params" element="tns:getInventoryResponse"/>
+    </message>
+
+    <portType name="InventoryManagementServicePortType">
+        <operation name="addInventory">
+            <input message="tns:addInventoryRequestMsg"/>
+            <output message="tns:addInventoryResponseMsg"/>
+            <fault name="fault" message="tns:inventoryFault"/>
+        </operation>
+        <operation name="updateInventory">
+            <input message="tns:updateInventoryRequestMsg"/>
+            <output message="tns:updateInventoryResponseMsg"/>
+            <fault name="fault" message="tns:inventoryFault"/>
+        </operation>
+        <operation name="getInventory">
+            <input message="tns:getInventoryRequestMsg"/>
+            <output message="tns:getInventoryResponseMsg"/>
+            <fault name="fault" message="tns:inventoryFault"/>
+        </operation>
+    </portType>
+
+    <binding name="inventoryManagementServiceSOAPBinding" type="tns:InventoryManagementServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="addInventory">
+            <soap:operation soapAction="addInventory"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="updateInventory">
+            <soap:operation soapAction="updateInventory"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getInventory">
+            <soap:operation soapAction="getInventory"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="InventoryManagementService">
+        <port name="InventoryManagementServicePort" binding="tns:inventoryManagementServiceSOAPBinding">
+            <soap:address location="http://localhost:8089/wsdlfirst/inventoryManagementService"/>
+        </port>
+    </service>
+</definitions>

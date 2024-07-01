@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.healthcare.com/ws/MedicalRecordService"
+           xmlns:tns="http://www.healthcare.com/ws/MedicalRecordService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="statusCode">
+        <xs:sequence>
+            <xs:element name="code" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MedicalRecordType">
+        <xs:all>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="patientId" type="xs:long"/>
+            <xs:element name="doctorId" type="xs:long"/>
+            <xs:element name="recordDate" type="xs:dateTime"/>
+            <xs:element name="notes" type="xs:string"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="createMedicalRecordRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="medicalRecordType" type="tns:MedicalRecordType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createMedicalRecordResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateMedicalRecordRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="medicalRecordType" type="tns:MedicalRecordType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateMedicalRecordResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getMedicalRecordsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="patientId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getMedicalRecordsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:MedicalRecordType" minOccurs="0" maxOccurs="unbounded" name="medicalRecords"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="MedicalRecordTypes">
+        <xs:sequence>
+            <xs:element type="tns:MedicalRecordType" minOccurs="0" maxOccurs="unbounded" name="medicalRecords"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="medicalRecordFault" type="xs:string"/>
+</xs:schema>

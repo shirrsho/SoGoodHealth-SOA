@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.healthcare.com/ws/InsuranceManagementService"
+           xmlns:tns="http://www.healthcare.com/ws/InsuranceManagementService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="policy">
+        <xs:sequence>
+            <!-- Define elements for policy -->
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="holderName" type="xs:string"/>
+            <xs:element name="policyType" type="xs:string"/>
+            <xs:element name="premiumAmount" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="createPolicyRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="policy" type="tns:policy"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createPolicyResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updatePolicyRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="policy" type="tns:policy"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updatePolicyResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPolicyRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPolicyResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="policy" type="tns:policy"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="statusCode">
+        <xs:sequence>
+            <xs:element name="code" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="insuranceFault" type="xs:string"/>
+</xs:schema>

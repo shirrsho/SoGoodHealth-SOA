@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.healthcare.com/ws/InventoryManagementService"
+           xmlns:tns="http://www.healthcare.com/ws/InventoryManagementService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="inventoryItem">
+        <xs:sequence>
+            <!-- Define elements for inventory item -->
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="quantity" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="addInventoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="inventoryItem" type="tns:inventoryItem"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addInventoryResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateInventoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="inventoryItem" type="tns:inventoryItem"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateInventoryResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getInventoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getInventoryResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="inventoryItem" type="tns:inventoryItem"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="statusCode">
+        <xs:sequence>
+            <xs:element name="code" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="inventoryFault" type="xs:string"/>
+</xs:schema>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.healthcare.com/ws/NotificationService"
+           xmlns:tns="http://www.healthcare.com/ws/NotificationService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="statusCode">
+        <xs:sequence>
+            <xs:element name="code" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="NotificationType">
+        <xs:all>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="date" type="xs:dateTime"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="sendNotificationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="notificationType" type="tns:NotificationType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="sendNotificationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateNotificationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="notificationType" type="tns:NotificationType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateNotificationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getNotificationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getNotificationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:NotificationType" minOccurs="0" maxOccurs="unbounded" name="notifications"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="NotificationTypes">
+        <xs:sequence>
+            <xs:element type="tns:NotificationType" minOccurs="0" maxOccurs="unbounded" name="notifications"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="notificationFault" type="xs:string"/>
+</xs:schema>

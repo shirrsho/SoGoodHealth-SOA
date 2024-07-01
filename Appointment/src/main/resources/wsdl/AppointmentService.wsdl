@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="AppointmentService"
+             targetNamespace="http://www.healthcare.com/ws/AppointmentService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.healthcare.com/ws/AppointmentService">
+
+    <types>
+        <xs:schema>
+        <xs:import namespace="http://www.healthcare.com/ws/AppointmentService" schemaLocation="../schemas/AppointmentServiceSchema.xsd" />
+        </xs:schema>
+    </types>
+
+    <message name="appointmentFault">
+        <part name="params" element="tns:appointmentFault" />
+    </message>
+
+    <message name="createAppointmentRequestMsg">
+        <part name="params" element="tns:createAppointmentRequest" />
+    </message>
+    <message name="createAppointmentResponseMsg">
+        <part name="params" element="tns:createAppointmentResponse" />
+    </message>
+
+    <message name="getAppointmentsRequestMsg">
+        <part name="params" element="tns:getAppointmentsRequest" />
+    </message>
+    <message name="getAppointmentsResponseMsg">
+        <part name="params" element="tns:getAppointmentsResponse" />
+    </message>
+
+    <message name="cancelAppointmentRequestMsg">
+        <part name="params" element="tns:cancelAppointmentRequest" />
+    </message>
+    <message name="cancelAppointmentResponseMsg">
+        <part name="params" element="tns:cancelAppointmentResponse" />
+    </message>
+
+    <portType name="AppointmentServicePortType">
+        <operation name="createAppointment">
+            <input message="tns:createAppointmentRequestMsg" />
+            <output message="tns:createAppointmentResponseMsg" />
+            <fault name="fault" message="tns:appointmentFault" />
+        </operation>
+        <operation name="getAppointments">
+            <input message="tns:getAppointmentsRequestMsg" />
+            <output message="tns:getAppointmentsResponseMsg" />
+            <fault name="fault" message="tns:appointmentFault" />
+        </operation>
+        <operation name="cancelAppointment">
+            <input message="tns:cancelAppointmentRequestMsg" />
+            <output message="tns:cancelAppointmentResponseMsg" />
+            <fault name="fault" message="tns:appointmentFault" />
+        </operation>
+    </portType>
+
+    <binding name="appointmentServiceSOAPBinding" type="tns:AppointmentServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="createAppointment">
+            <soap:operation soapAction="createAppointment" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getAppointments">
+            <soap:operation soapAction="getAppointments" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="cancelAppointment">
+            <soap:operation soapAction="cancelAppointment" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    <service name="AppointmentService">
+        <port name="AppointmentServicePort" binding="tns:appointmentServiceSOAPBinding">
+            <soap:address location="http://localhost:8083/wsdlfirst/appointmentService" />
+        </port>
+    </service>
+</definitions>

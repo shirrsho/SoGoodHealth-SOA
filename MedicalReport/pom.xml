@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="GenerateReportService"
+			 targetNamespace="http://www.healthcare.com/ws/GenerateReportService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.healthcare.com/ws/GenerateReportService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.healthcare.com/ws/GenerateReportService" schemaLocation="GenerateReportServiceSchema.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="generateReportRequestMsg">
+		<part name="params" element="tns:generateReportRequest"/>
+	</message>
+	<message name="generateReportResponseMsg">
+		<part name="params" element="tns:generateReportResponse"/>
+	</message>
+
+	<portType name="GenerateReportServicePortType">
+		<operation name="generateReport">
+			<input message="tns:generateReportRequestMsg"/>
+			<output message="tns:generateReportResponseMsg"/>
+		</operation>
+	</portType>
+
+	<binding name="generateReportServiceSOAPBinding" type="tns:GenerateReportServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="generateReport">
+			<soap:operation soapAction="generateReport"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="GenerateReportService">
+		<port name="GenerateReportServicePort" binding="tns:generateReportServiceSOAPBinding">
+			<soap:address location="http://localhost:8080/wsdlfirst/generateReportService"/>
+		</port>
+	</service>
+</definitions>

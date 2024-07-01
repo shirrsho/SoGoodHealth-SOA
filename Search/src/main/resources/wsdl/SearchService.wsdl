@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="SearchService"
+             targetNamespace="http://www.healthcare.com/ws/SearchService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.healthcare.com/ws/SearchService">
+
+    <types>
+        <xs:schema>
+        <xs:import namespace="http://www.healthcare.com/ws/SearchService" schemaLocation="../schemas/SearchServiceSchema.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="searchFault">
+        <part name="params" element="tns:searchFault"/>
+    </message>
+
+    <message name="searchRequestMsg">
+        <part name="params" element="tns:searchRequest"/>
+    </message>
+    <message name="searchResponseMsg">
+        <part name="params" element="tns:searchResponse"/>
+    </message>
+
+    <portType name="SearchServicePortType">
+        <operation name="search">
+            <input message="tns:searchRequestMsg"/>
+            <output message="tns:searchResponseMsg"/>
+            <fault name="fault" message="tns:searchFault"/>
+        </operation>
+    </portType>
+
+    <binding name="searchServiceSOAPBinding" type="tns:SearchServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="search">
+            <soap:operation soapAction="search"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="SearchService">
+        <port name="SearchServicePort" binding="tns:searchServiceSOAPBinding">
+            <soap:address location="http://localhost:8087/wsdlfirst/searchService"/>
+        </port>
+    </service>
+</definitions>

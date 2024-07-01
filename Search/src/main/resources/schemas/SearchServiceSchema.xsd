@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.healthcare.com/ws/SearchService"
+           xmlns:tns="http://www.healthcare.com/ws/SearchService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="searchParams">
+        <xs:sequence>
+            <!-- Define elements for search parameters -->
+            <xs:element name="query" type="xs:string"/>
+            <xs:element name="maxResults" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="searchResult">
+        <xs:sequence>
+            <!-- Define elements for search result -->
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="searchRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="params" type="tns:searchParams"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="searchResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="tns:searchResult" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="searchFault" type="xs:string"/>
+</xs:schema>

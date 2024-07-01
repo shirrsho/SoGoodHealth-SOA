@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="InsuranceManagementService"
+             targetNamespace="http://www.healthcare.com/ws/InsuranceManagementService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.healthcare.com/ws/InsuranceManagementService">
+
+    <types>
+        <xs:schema>
+        <xs:import namespace="http://www.healthcare.com/ws/InsuranceManagementService" schemaLocation="../schemas/InsuranceManagementServiceSchema.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="insuranceFault">
+        <part name="params" element="tns:insuranceFault"/>
+    </message>
+
+    <message name="createPolicyRequestMsg">
+        <part name="params" element="tns:createPolicyRequest"/>
+    </message>
+    <message name="createPolicyResponseMsg">
+        <part name="params" element="tns:createPolicyResponse"/>
+    </message>
+
+    <message name="updatePolicyRequestMsg">
+        <part name="params" element="tns:updatePolicyRequest"/>
+    </message>
+    <message name="updatePolicyResponseMsg">
+        <part name="params" element="tns:updatePolicyResponse"/>
+    </message>
+
+    <message name="getPolicyRequestMsg">
+        <part name="params" element="tns:getPolicyRequest"/>
+    </message>
+    <message name="getPolicyResponseMsg">
+        <part name="params" element="tns:getPolicyResponse"/>
+    </message>
+
+    <portType name="InsuranceManagementServicePortType">
+        <operation name="createPolicy">
+            <input message="tns:createPolicyRequestMsg"/>
+            <output message="tns:createPolicyResponseMsg"/>
+            <fault name="fault" message="tns:insuranceFault"/>
+        </operation>
+        <operation name="updatePolicy">
+            <input message="tns:updatePolicyRequestMsg"/>
+            <output message="tns:updatePolicyResponseMsg"/>
+            <fault name="fault" message="tns:insuranceFault"/>
+        </operation>
+        <operation name="getPolicy">
+            <input message="tns:getPolicyRequestMsg"/>
+            <output message="tns:getPolicyResponseMsg"/>
+            <fault name="fault" message="tns:insuranceFault"/>
+        </operation>
+    </portType>
+
+    <binding name="insuranceManagementServiceSOAPBinding" type="tns:InsuranceManagementServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="createPolicy">
+            <soap:operation soapAction="createPolicy"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="updatePolicy">
+            <soap:operation soapAction="updatePolicy"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getPolicy">
+            <soap:operation soapAction="getPolicy"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="InsuranceManagementService">
+        <port name="InsuranceManagementServicePort" binding="tns:insuranceManagementServiceSOAPBinding">
+            <soap:address location="http://localhost:8090/wsdlfirst/insuranceManagementService"/>
+        </port>
+    </service>
+</definitions>

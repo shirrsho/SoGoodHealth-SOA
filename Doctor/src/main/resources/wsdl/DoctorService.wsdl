@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="DoctorService"
+             targetNamespace="http://www.healthcare.com/ws/DoctorService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.healthcare.com/ws/DoctorService">
+
+    <types>
+        <xs:schema>
+        <xs:import namespace="http://www.healthcare.com/ws/DoctorService" schemaLocation="../schemas/DoctorServiceSchema.xsd" />
+        </xs:schema>
+    </types>
+
+    <message name="doctorFault">
+        <part name="params" element="tns:doctorFault" />
+    </message>
+
+    <message name="getDoctorsRequestMsg">
+        <part name="params" element="tns:getDoctorsRequest" />
+    </message>
+    <message name="getDoctorsResponseMsg">
+        <part name="params" element="tns:getDoctorsResponse" />
+    </message>
+
+    <message name="deleteDoctorRequestMsg">
+        <part name="params" element="tns:deleteDoctorRequest" />
+    </message>
+    <message name="deleteDoctorResponseMsg">
+        <part name="params" element="tns:deleteDoctorResponse" />
+    </message>
+
+    <message name="updateDoctorRequestMsg">
+        <part name="params" element="tns:updateDoctorRequest" />
+    </message>
+    <message name="updateDoctorResponseMsg">
+        <part name="params" element="tns:updateDoctorResponse" />
+    </message>
+
+    <portType name="DoctorServicePortType">
+        <operation name="deleteDoctor">
+            <input message="tns:deleteDoctorRequestMsg" />
+            <output message="tns:deleteDoctorResponseMsg" />
+            <fault name="fault" message="tns:doctorFault" />
+        </operation>
+        <operation name="updateDoctor">
+            <input message="tns:updateDoctorRequestMsg" />
+            <output message="tns:updateDoctorResponseMsg" />
+            <fault name="fault" message="tns:doctorFault" />
+        </operation>
+        <operation name="getDoctors">
+            <input message="tns:getDoctorsRequestMsg" />
+            <output message="tns:getDoctorsResponseMsg" />
+            <fault name="fault" message="tns:doctorFault" />
+        </operation>
+    </portType>
+
+    <binding name="doctorServiceSOAPBinding" type="tns:DoctorServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="deleteDoctor">
+            <soap:operation soapAction="deleteDoctor" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="updateDoctor">
+            <soap:operation soapAction="updateDoctor" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getDoctors">
+            <soap:operation soapAction="getDoctors" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    <service name="DoctorService">
+        <port name="DoctorServicePort" binding="tns:doctorServiceSOAPBinding">
+            <soap:address location="http://localhost:8082/wsdlfirst/doctorService" />
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.healthcare.com/ws/AppointmentService"
+           xmlns:tns="http://www.healthcare.com/ws/AppointmentService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="statusCode">
+        <xs:sequence>
+            <xs:element name="code" type="xs:long" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AppointmentType">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="patientId" type="xs:long" />
+            <xs:element name="doctorId" type="xs:long" />
+            <xs:element name="appointmentDate" type="xs:dateTime" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="createAppointmentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="appointmentType" type="tns:AppointmentType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createAppointmentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="cancelAppointmentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="cancelAppointmentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAppointmentsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="patientId" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAppointmentsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:AppointmentType" minOccurs="0" maxOccurs="unbounded" name="appointments" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="AppointmentTypes">
+        <xs:sequence>
+            <xs:element type="tns:AppointmentType" minOccurs="0" maxOccurs="unbounded" name="appointments" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="appointmentFault" type="xs:string" />
+</xs:schema>

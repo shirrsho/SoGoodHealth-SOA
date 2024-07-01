@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="MedicalRecordService"
+             targetNamespace="http://www.healthcare.com/ws/MedicalRecordService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.healthcare.com/ws/MedicalRecordService">
+
+    <types>
+        <xs:schema>
+        <xs:import namespace="http://www.healthcare.com/ws/MedicalRecordService" schemaLocation="../schemas/MedicalRecordServiceSchema.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="medicalRecordFault">
+        <part name="params" element="tns:medicalRecordFault"/>
+    </message>
+
+    <message name="createMedicalRecordRequestMsg">
+        <part name="params" element="tns:createMedicalRecordRequest"/>
+    </message>
+    <message name="createMedicalRecordResponseMsg">
+        <part name="params" element="tns:createMedicalRecordResponse"/>
+    </message>
+
+    <message name="getMedicalRecordsRequestMsg">
+        <part name="params" element="tns:getMedicalRecordsRequest"/>
+    </message>
+    <message name="getMedicalRecordsResponseMsg">
+        <part name="params" element="tns:getMedicalRecordsResponse"/>
+    </message>
+
+    <message name="updateMedicalRecordRequestMsg">
+        <part name="params" element="tns:updateMedicalRecordRequest"/>
+    </message>
+    <message name="updateMedicalRecordResponseMsg">
+        <part name="params" element="tns:updateMedicalRecordResponse"/>
+    </message>
+
+    <portType name="MedicalRecordServicePortType">
+        <operation name="createMedicalRecord">
+            <input message="tns:createMedicalRecordRequestMsg"/>
+            <output message="tns:createMedicalRecordResponseMsg"/>
+            <fault name="fault" message="tns:medicalRecordFault"/>
+        </operation>
+        <operation name="getMedicalRecords">
+            <input message="tns:getMedicalRecordsRequestMsg"/>
+            <output message="tns:getMedicalRecordsResponseMsg"/>
+            <fault name="fault" message="tns:medicalRecordFault"/>
+        </operation>
+        <operation name="updateMedicalRecord">
+            <input message="tns:updateMedicalRecordRequestMsg"/>
+            <output message="tns:updateMedicalRecordResponseMsg"/>
+            <fault name="fault" message="tns:medicalRecordFault"/>
+        </operation>
+    </portType>
+
+    <binding name="medicalRecordServiceSOAPBinding" type="tns:MedicalRecordServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="createMedicalRecord">
+            <soap:operation soapAction="createMedicalRecord"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getMedicalRecords">
+            <soap:operation soapAction="getMedicalRecords"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="updateMedicalRecord">
+            <soap:operation soapAction="updateMedicalRecord"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <service name="MedicalRecordService">
+        <port name="MedicalRecordServicePort" binding="tns:medicalRecordServiceSOAPBinding">
+            <soap:address location="http://localhost:8080/wsdlfirst/medicalRecordService"/>
+        </port>
+    </service>
+</definitions>

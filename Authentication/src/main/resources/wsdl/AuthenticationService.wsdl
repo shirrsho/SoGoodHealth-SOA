@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="AuthenticationService"
+             targetNamespace="http://www.healthcare.com/ws/AuthenticationService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.healthcare.com/ws/AuthenticationService">
+
+    <types>
+        <xs:schema>
+        <xs:import namespace="http://www.healthcare.com/ws/AuthenticationService" schemaLocation="../schemas/AuthenticationServiceSchema.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="authenticationFault">
+        <part name="params" element="tns:authenticationFault"/>
+    </message>
+
+    <message name="authenticateUserRequestMsg">
+        <part name="params" element="tns:authenticateUserRequest"/>
+    </message>
+    <message name="authenticateUserResponseMsg">
+        <part name="params" element="tns:authenticateUserResponse"/>
+    </message>
+
+    <message name="authorizeUserRequestMsg">
+        <part name="params" element="tns:authorizeUserRequest"/>
+    </message>
+    <message name="authorizeUserResponseMsg">
+        <part name="params" element="tns:authorizeUserResponse"/>
+    </message>
+
+    <portType name="AuthenticationServicePortType">
+        <operation name="authenticateUser">
+            <input message="tns:authenticateUserRequestMsg"/>
+            <output message="tns:authenticateUserResponseMsg"/>
+            <fault name="fault" message="tns:authenticationFault"/>
+        </operation>
+        <operation name="authorizeUser">
+            <input message="tns:authorizeUserRequestMsg"/>
+            <output message="tns:authorizeUserResponseMsg"/>
+            <fault name="fault" message="tns:authenticationFault"/>
+        </operation>
+    </portType>
+
+    <binding name="authenticationServiceSOAPBinding" type="tns:AuthenticationServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="authenticateUser">
+            <soap:operation soapAction="authenticateUser"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="authorizeUser">
+            <soap:operation soapAction="authorizeUser"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="AuthenticationService">
+        <port name="AuthenticationServicePort" binding="tns:authenticationServiceSOAPBinding">
+            <soap:address location="http://localhost:8091/wsdlfirst/authenticationService"/>
+        </port>
+    </service>
+</definitions>

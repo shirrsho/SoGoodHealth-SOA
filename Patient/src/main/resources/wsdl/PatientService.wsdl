@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="PatientService"
+             targetNamespace="http://www.healthcare.com/ws/PatientService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.healthcare.com/ws/PatientService">
+
+    <types>
+        <xs:schema>
+        <xs:import namespace="http://www.healthcare.com/ws/PatientService" schemaLocation="../schemas/PatientServiceSchema.xsd" />
+        </xs:schema>
+    </types>
+
+    <message name="patientFault">
+        <part name="params" element="tns:patientFault" />
+    </message>
+
+    <message name="registerPatientRequestMsg">
+        <part name="params" element="tns:registerPatientRequest" />
+    </message>
+    <message name="registerPatientResponseMsg">
+        <part name="params" element="tns:registerPatientResponse" />
+    </message>
+
+    <message name="updatePatientRequestMsg">
+        <part name="params" element="tns:updatePatientRequest" />
+    </message>
+    <message name="updatePatientResponseMsg">
+        <part name="params" element="tns:updatePatientResponse" />
+    </message>
+
+    <message name="getPatientDetailsRequestMsg">
+        <part name="params" element="tns:getPatientDetailsRequest" />
+    </message>
+    <message name="getPatientDetailsResponseMsg">
+        <part name="params" element="tns:getPatientDetailsResponse" />
+    </message>
+
+    <message name="deletePatientRequestMsg">
+        <part name="params" element="tns:deletePatientRequest" />
+    </message>
+    <message name="deletePatientResponseMsg">
+        <part name="params" element="tns:deletePatientResponse" />
+    </message>
+
+    <portType name="PatientServicePortType">
+        <operation name="registerPatient">
+            <input message="tns:registerPatientRequestMsg" />
+            <output message="tns:registerPatientResponseMsg" />
+            <fault name="fault" message="tns:patientFault" />
+        </operation>
+        <operation name="updatePatient">
+            <input message="tns:updatePatientRequestMsg" />
+            <output message="tns:updatePatientResponseMsg" />
+            <fault name="fault" message="tns:patientFault" />
+        </operation>
+        <operation name="getPatientDetails">
+            <input message="tns:getPatientDetailsRequestMsg" />
+            <output message="tns:getPatientDetailsResponseMsg" />
+            <fault name="fault" message="tns:patientFault" />
+        </operation>
+        <operation name="deletePatient">
+            <input message="tns:deletePatientRequestMsg" />
+            <output message="tns:deletePatientResponseMsg" />
+            <fault name="fault" message="tns:patientFault" />
+        </operation>
+    </portType>
+
+    <binding name="patientServiceSOAPBinding" type="tns:PatientServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="registerPatient">
+            <soap:operation soapAction="registerPatient" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="updatePatient">
+            <soap:operation soapAction="updatePatient" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getPatientDetails">
+            <soap:operation soapAction="getPatientDetails" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+        <operation name="deletePatient">
+            <soap:operation soapAction="deletePatient" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    <service name="PatientService">
+        <port name="PatientServicePort" binding="tns:patientServiceSOAPBinding">
+            <soap:address location="http://localhost:8081/wsdlfirst/patientService" />
+        </port>
+    </service>
+</definitions>

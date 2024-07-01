@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="BillingService"
+             targetNamespace="http://www.healthcare.com/ws/BillingService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.healthcare.com/ws/BillingService">
+
+    <types>
+        <xs:schema>
+        <xs:import namespace="http://www.healthcare.com/ws/BillingService" schemaLocation="../schemas/BillingServiceSchema.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="billingFault">
+        <part name="params" element="tns:billingFault"/>
+    </message>
+
+    <message name="createInvoiceRequestMsg">
+        <part name="params" element="tns:createInvoiceRequest"/>
+    </message>
+    <message name="createInvoiceResponseMsg">
+        <part name="params" element="tns:createInvoiceResponse"/>
+    </message>
+
+    <message name="getInvoicesRequestMsg">
+        <part name="params" element="tns:getInvoicesRequest"/>
+    </message>
+    <message name="getInvoicesResponseMsg">
+        <part name="params" element="tns:getInvoicesResponse"/>
+    </message>
+
+    <message name="updateInvoiceRequestMsg">
+        <part name="params" element="tns:updateInvoiceRequest"/>
+    </message>
+    <message name="updateInvoiceResponseMsg">
+        <part name="params" element="tns:updateInvoiceResponse"/>
+    </message>
+
+    <portType name="BillingServicePortType">
+        <operation name="createInvoice">
+            <input message="tns:createInvoiceRequestMsg"/>
+            <output message="tns:createInvoiceResponseMsg"/>
+            <fault name="fault" message="tns:billingFault"/>
+        </operation>
+        <operation name="getInvoices">
+            <input message="tns:getInvoicesRequestMsg"/>
+            <output message="tns:getInvoicesResponseMsg"/>
+            <fault name="fault" message="tns:billingFault"/>
+        </operation>
+        <operation name="updateInvoice">
+            <input message="tns:updateInvoiceRequestMsg"/>
+            <output message="tns:updateInvoiceResponseMsg"/>
+            <fault name="fault" message="tns:billingFault"/>
+        </operation>
+    </portType>
+
+    <binding name="billingServiceSOAPBinding" type="tns:BillingServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="createInvoice">
+            <soap:operation soapAction="createInvoice"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getInvoices">
+            <soap:operation soapAction="getInvoices"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="updateInvoice">
+            <soap:operation soapAction="updateInvoice"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <service name="BillingService">
+        <port name="BillingServicePort" binding="tns:billingServiceSOAPBinding">
+            <soap:address location="http://localhost:8084/wsdlfirst/billingService"/>
+        </port>
+    </service>
+</definitions>

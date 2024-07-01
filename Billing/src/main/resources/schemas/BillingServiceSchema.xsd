@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.healthcare.com/ws/BillingService"
+           xmlns:tns="http://www.healthcare.com/ws/BillingService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="statusCode">
+        <xs:sequence>
+            <xs:element name="code" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="InvoiceType">
+        <xs:all>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="patientId" type="xs:long"/>
+            <xs:element name="amount" type="xs:double"/>
+            <xs:element name="dueDate" type="xs:dateTime"/>
+            <xs:element name="paid" type="xs:boolean"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="createInvoiceRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="invoiceType" type="tns:InvoiceType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createInvoiceResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateInvoiceRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="invoiceType" type="tns:InvoiceType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateInvoiceResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getInvoicesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="patientId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getInvoicesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:InvoiceType" minOccurs="0" maxOccurs="unbounded" name="invoices"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="InvoiceTypes">
+        <xs:sequence>
+            <xs:element type="tns:InvoiceType" minOccurs="0" maxOccurs="unbounded" name="invoices"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="billingFault" type="xs:string"/>
+</xs:schema>
