@@ -13,7 +13,6 @@
     <xs:element name="generateReportRequest">
         <xs:complexType>
             <xs:sequence>
-                <!-- Define elements for report generation request -->
                 <xs:element name="reportId" type="xs:string"/>
                 <xs:element name="patientId" type="xs:long"/>
                 <xs:element name="startDate" type="xs:dateTime"/>
@@ -25,7 +24,6 @@
     <xs:element name="generateReportResponse">
         <xs:complexType>
             <xs:sequence>
-                <!-- Define elements for report generation response -->
                 <xs:element name="statusCode" type="tns:statusCode"/>
                 <xs:element name="reportUrl" type="xs:string"/>
             </xs:sequence>

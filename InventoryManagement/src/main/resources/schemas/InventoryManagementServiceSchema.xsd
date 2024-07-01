@@ -6,7 +6,6 @@
 
     <xs:complexType name="inventoryItem">
         <xs:sequence>
-            <!-- Define elements for inventory item -->
             <xs:element name="id" type="xs:long"/>
             <xs:element name="name" type="xs:string"/>
             <xs:element name="quantity" type="xs:int"/>

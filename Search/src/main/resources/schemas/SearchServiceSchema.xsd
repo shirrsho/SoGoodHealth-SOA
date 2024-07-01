@@ -6,7 +6,6 @@
 
     <xs:complexType name="searchParams">
         <xs:sequence>
-            <!-- Define elements for search parameters -->
             <xs:element name="query" type="xs:string"/>
             <xs:element name="maxResults" type="xs:int"/>
         </xs:sequence>
@@ -14,7 +13,6 @@
 
     <xs:complexType name="searchResult">
         <xs:sequence>
-            <!-- Define elements for search result -->
             <xs:element name="id" type="xs:long"/>
             <xs:element name="type" type="xs:string"/>
             <xs:element name="name" type="xs:string"/>

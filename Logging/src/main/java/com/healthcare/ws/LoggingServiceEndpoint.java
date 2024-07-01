@@ -19,14 +19,11 @@ public class LoggingServiceEndpoint {
 		LogMessageResponse response = factory.createLogMessageResponse();
 		StatusCode statusCode = factory.createStatusCode();
 
-		// Simulate logging logic
 		String message = request.getMessage();
 		String severity = request.getSeverity();
 
-		// Log message (sample implementation)
 		System.out.println("Logged message: " + message + " (Severity: " + severity + ")");
 
-		// Simulate random status code (200 or 500)
 		statusCode.setCode(new Random().nextInt(2) == 0 ? 200 : 500);
 		response.setStatusCode(statusCode);
 

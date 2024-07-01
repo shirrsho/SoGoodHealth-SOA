@@ -13,7 +13,6 @@ import java.util.Map;
 public class InsuranceManagementServiceEndpoint {
 	private static final String NAMESPACE_URI = "http://www.healthcare.com/ws/InsuranceManagementService";
 
-	// Simulated database or storage for policies
 	private Map<Long, Policy> policies = new HashMap<>();
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "createPolicyRequest")
@@ -58,7 +57,6 @@ public class InsuranceManagementServiceEndpoint {
 		if (policy != null) {
 			response.setPolicy(policy);
 		} else {
-			// Simulate fault response if policy is not found
 			System.out.println("error");;
 		}
 

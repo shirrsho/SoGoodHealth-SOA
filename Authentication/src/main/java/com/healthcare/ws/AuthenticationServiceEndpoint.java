@@ -13,7 +13,6 @@ import java.util.Map;
 public class AuthenticationServiceEndpoint {
 	private static final String NAMESPACE_URI = "http://www.healthcare.com/ws/AuthenticationService";
 
-	// Simulated database or storage for tokens
 	private Map<String, String> tokenStore = new HashMap<>();
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "authenticateUserRequest")
@@ -26,7 +25,7 @@ public class AuthenticationServiceEndpoint {
 		String username = request.getUsername();
 		String password = request.getPassword();
 
-		// Simulate authentication logic (always return success for demo)
+		// (always return success for demo)
 		if (username.equals("demo") && password.equals("password")) {
 			String token = generateToken();
 			tokenStore.put(token, username);
@@ -51,9 +50,8 @@ public class AuthenticationServiceEndpoint {
 		String resource = request.getResource();
 		String action = request.getAction();
 
-		// Simulate authorization logic (always return success for demo)
+		// (always return success for demo)
 		if (tokenStore.containsKey(token)) {
-			// Additional logic can be implemented here based on resource and action
 			statusCode.setCode(200);
 		} else {
 			statusCode.setCode(403); // Forbidden
@@ -64,7 +62,6 @@ public class AuthenticationServiceEndpoint {
 	}
 
 	private String generateToken() {
-		// Generate a simple token for demo purposes
 		return "generated-token";
 	}
 }

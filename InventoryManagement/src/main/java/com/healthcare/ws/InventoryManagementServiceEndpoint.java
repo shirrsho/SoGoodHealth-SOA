@@ -13,7 +13,6 @@ import java.util.Map;
 public class InventoryManagementServiceEndpoint {
 	private static final String NAMESPACE_URI = "http://www.healthcare.com/ws/InventoryManagementService";
 
-	// Simulated database or inventory system
 	private Map<Long, InventoryItem> inventory = new HashMap<>();
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "addInventoryRequest")
@@ -58,7 +57,6 @@ public class InventoryManagementServiceEndpoint {
 		if (item != null) {
 			response.setInventoryItem(item);
 		} else {
-			// Simulate fault response if item is not found
 			System.out.println("error");
 		}
 

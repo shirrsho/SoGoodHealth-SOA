@@ -6,7 +6,6 @@
 
     <xs:complexType name="policy">
         <xs:sequence>
-            <!-- Define elements for policy -->
             <xs:element name="id" type="xs:long"/>
             <xs:element name="holderName" type="xs:string"/>
             <xs:element name="policyType" type="xs:string"/>

@@ -7,7 +7,6 @@
     <xs:element name="logMessageRequest">
         <xs:complexType>
             <xs:sequence>
-                <!-- Define elements for log message request -->
                 <xs:element name="message" type="xs:string"/>
                 <xs:element name="severity" type="xs:string"/>
                 <xs:element name="timestamp" type="xs:dateTime"/>
@@ -18,7 +17,6 @@
     <xs:element name="logMessageResponse">
         <xs:complexType>
             <xs:sequence>
-                <!-- Define elements for log message response -->
                 <xs:element name="statusCode" type="tns:statusCode"/>
             </xs:sequence>
         </xs:complexType>

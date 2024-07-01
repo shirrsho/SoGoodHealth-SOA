@@ -19,11 +19,9 @@ public class ReportGenerationServiceEndpoint {
 		GenerateReportResponse response = factory.createGenerateReportResponse();
 		StatusCode code = factory.createStatusCode();
 
-		// Simulate report generation logic
 		String reportId = request.getReportId();
 		long patientId = request.getPatientId();
 
-		// Generate report URL (sample implementation)
 		String reportUrl = "http://example.com/reports/" + UUID.randomUUID().toString();
 
 		code.setCode(200);
