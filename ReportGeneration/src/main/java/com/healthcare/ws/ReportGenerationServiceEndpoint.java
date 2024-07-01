@@ -1,5 +1,7 @@
 package com.healthcare.ws;
 
+import com.healthcare.ws.clients.LoggerClient;
+import com.healthcare.ws.clients.ReportClient;
 import com.healthcare.ws.reportgenerationservice.*;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -18,6 +20,9 @@ public class ReportGenerationServiceEndpoint {
 		ObjectFactory factory = new ObjectFactory();
 		GenerateReportResponse response = factory.createGenerateReportResponse();
 		StatusCode code = factory.createStatusCode();
+
+		LoggerClient loggerClient = new LoggerClient();
+		ReportClient reportClient = new ReportClient();
 
 		String reportId = request.getReportId();
 		long patientId = request.getPatientId();

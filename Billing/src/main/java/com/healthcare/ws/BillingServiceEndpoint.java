@@ -1,6 +1,9 @@
 package com.healthcare.ws;
 
 import com.healthcare.ws.billingservice.*;
+import com.healthcare.ws.clients.AppointmentClient;
+import com.healthcare.ws.clients.LoggerClient;
+import com.healthcare.ws.clients.PatientClient;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -22,6 +25,9 @@ public class BillingServiceEndpoint {
 	public CreateInvoiceResponse createInvoice(@RequestPayload CreateInvoiceRequest request) throws Exception {
 		ObjectFactory factory = new ObjectFactory();
 		StatusCode code = factory.createStatusCode();
+		LoggerClient loggerClient = new LoggerClient();
+		PatientClient reportClient = new PatientClient();
+		AppointmentClient appointmentClient = new AppointmentClient();
 		CreateInvoiceResponse response = factory.createCreateInvoiceResponse();
 		code.setCode(201);
 		response.setStatusCode(code);
