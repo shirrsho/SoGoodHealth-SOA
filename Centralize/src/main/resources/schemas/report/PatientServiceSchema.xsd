@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.healthcare.com/ws/PatientService"
+           xmlns:tns="http://www.healthcare.com/ws/PatientService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="statusCode">
+        <xs:sequence>
+            <xs:element name="code" type="xs:long" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PatientType">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="firstName" type="xs:string" />
+            <xs:element name="lastName" type="xs:string" />
+            <xs:element name="dob" type="xs:date" />
+            <xs:element name="gender" type="xs:string" />
+            <xs:element name="contact" type="xs:string" />
+            <xs:element name="address" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="registerPatientRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="patient" type="tns:PatientType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="registerPatientResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updatePatientRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="patient" type="tns:PatientType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updatePatientResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPatientDetailsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPatientDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="patient" type="tns:PatientType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deletePatientRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deletePatientResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="patientFault" type="xs:string" />
+</xs:schema>

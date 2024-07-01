@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.healthcare.com/ws/DoctorService"
+           xmlns:tns="http://www.healthcare.com/ws/DoctorService"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="statusCode">
+        <xs:sequence>
+            <xs:element name="code" type="xs:long" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DoctorType">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="specialization" type="xs:string" />
+            <xs:element name="contact" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="updateDoctorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="doctorType" type="tns:DoctorType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateDoctorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteDoctorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteDoctorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getDoctorsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getDoctorsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:DoctorType" minOccurs="0" maxOccurs="unbounded" name="doctors" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="DoctorTypes">
+        <xs:sequence>
+            <xs:element type="tns:DoctorType" minOccurs="0" maxOccurs="unbounded" name="doctors" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="doctorFault" type="xs:string" />
+</xs:schema>
